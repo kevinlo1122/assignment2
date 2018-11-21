@@ -96,7 +96,7 @@ int main()
 			cout << "8 <= number of squares <= 18" << endl;
 			continue;
 		}
-		
+		//test
 	}
 	return 0;
 }
