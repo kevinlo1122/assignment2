@@ -63,7 +63,7 @@ void InitializeBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int nu
 	int j = 0;
 	for (i = 0; i < numRowsInBoard; i++)
 	{
-		for (j = 0; j < numRowsInBoard; i++)
+		for (j = 0; j < numRowsInBoard; j++)
 		{
 			if ((i == 0) && (j % 2 == 1))
 			{
@@ -106,7 +106,7 @@ void DisplayBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRo
 	for (i = 0; i < numRowsInBoard; i++)
 	{
 		cout << endl << endl;
-		for (j = 0; j < numRowsInBoard; i++)
+		for (j = 0; j < numRowsInBoard; j++)
 		{
 			if (CMCheckersBoard[i][j] != 0)
 			{
