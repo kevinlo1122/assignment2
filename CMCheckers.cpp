@@ -1,7 +1,8 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-//global variables
+
+//global constants
 const int MAX_ARRAY_SIZE = 18;
 const int MIN_ARRAY_SIZE = 8;
 const int MAX_PIECES = 72;
@@ -17,8 +18,8 @@ const int REDMULE = 5;
 const int REDKING = 6;
 const int WHITEPLAYER = 1;
 const int REDPLAYER = 2;
-/*
-//other fuctions
+
+//function prototypes
 void InitializeBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 
 	int numRowsInBoard);
@@ -54,28 +55,50 @@ bool MakeMove(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 bool CheckWin(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard);
 
 bool CheckWin(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard);
-*/
+
+//write function definitions here please
+
+
+
+
+
+
+
+
 //main function
 int main()
 {
-	//local variables
-	int numRowsInBoard = 0;
+	//declaring variables
 	int numOfTries = 0; //counter for error in selecting size of board
+	string endgame; //holding character to end the game
+	int numRowsInBoard = 0;
+	int myCMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE];
+
+	int xIndicesMove[MAX_PIECES];
+	int yIndicesMove[MAX_PIECES];
+
+	int xIndicesJump[MAX_PIECES];
+	int yIndicesJump[MAX_PIECES];
+
+
 	//getting size of board
 	//checking if size is a valid input
 	while (numOfTries <= 3)
 	{
-		if (numOfTries > 3)
+		if (numOfTries >= 3)
 		{
 			"ERROR: Too many erros entering the size of the board.";
 			return 1;
 		}
 		numOfTries++;
 		cout << "Enter the number of squares along each edge of the board: ";
-		if (!(cin >> numRowsInBoard))
+		cin >> numRowsInBoard;
+		if (cin.fail())
 		{
 			cerr << "ERROR: Board size is not an integer" << endl;
 			cout << "8 <= number of squares <= 18" << endl;
+			cin.clear();
+			cin.ignore();
 			continue;
 		}
 		if (numRowsInBoard > 18)
@@ -96,7 +119,31 @@ int main()
 			cout << "8 <= number of squares <= 18" << endl;
 			continue;
 		}
-		//test
+		else
+		{
+			break;
+		}	
 	}
+
+	//InitializeBoard();
+	//DisplayBoard();
+	/*
+	//for each turn: check if the player has legal move
+	CountJumps(); //this will tell how many checkers are avalible to move
+	CountMove1Squares(); (this tells how many Mules and Soldiers can be moved and how many kings can be moved)
+	//if there is no possible moves (return values are 0)
+	//if red wins =
+	cout << "White is unable to move." << endl << "GAME OVER, Red has won." << endl << "Enter any character to close the game."
+	//if white wins = 
+	cout << "Red is unable to move." << endl << "GAME OVER, White has won." << endl << "Enter any character to close the game."
+	//user presses any character to end the game
+	getline(cin, endgame);
+	if (!endgame.empty())
+	{
+		return 0;
+	}
+	*/
+
+
 	return 0;
 }
