@@ -57,7 +57,46 @@ bool CheckWin(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsIn
 bool CheckWin(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard);
 
 //write function definitions here please
-
+void InitializeBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard)
+{
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < numRowsInBoard; i++)
+	{
+		for (j = 0; j < numRowsInBoard; i++)
+		{
+			if ((i == 0) && (j % 2 == 1))
+			{
+				CMCheckersBoard[i][j] = { WHITEMULE };
+			}
+			else if (i == (numRowsInBoard - 1) && ((j % 2 == 0) || (j % 2 == 2)))
+			{
+				CMCheckersBoard[i][j] = { REDMULE };
+			}
+			else if ((i % 2 == 1) && (j % 2 == 0 || j % 2 == 2) && (i < numRowsInBoard / 2 - 1))
+			{
+				CMCheckersBoard[i][j] = { WHITESOLDIER };
+			}
+			else if ((i % 2 == 0) && (j % 2 == 1) && (i < numRowsInBoard / 2 - 1))
+			{
+				CMCheckersBoard[i][j] = { WHITESOLDIER };
+			}
+			else if ((i % 2 == 0) && (j % 2 == 1) && (i > numRowsInBoard / 2))
+			{
+				CMCheckersBoard[i][j] = { REDSOLDIER };
+			}
+			else if ((i % 2 == 1) && (j % 2 == 0 || j % 2 == 2) && (i > numRowsInBoard / 2))
+			{
+				CMCheckersBoard[i][j] = { REDSOLDIER };
+			}
+			else
+			{
+				CMCheckersBoard[i][j] = { NOPLAYER };
+			}
+		}
+	}
+	return;
+}
 
 
 
