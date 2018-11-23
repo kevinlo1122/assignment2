@@ -153,6 +153,41 @@ void DisplayBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRo
 	return;
 }
 
+bool CheckList(int inArray1[], int inArray2[], int xIndex, int yIndex)
+{
+	int index1 = 0;
+	int xposition = -1;
+	bool xfound = false;
+	int index2 = 0;
+	int yposition = -1;
+	bool yfound = false;
+	bool found = false;
+	while (index1 < MAX_PIECES && !xfound)
+	{
+		if (inArray1[index1] == xIndex)
+		{
+			xfound = true;
+			xposition = index1;
+		}
+		index1++;
+	}
+	while (index2 < MAX_PIECES && !yfound)
+	{
+		if (inArray2[index2] == yIndex)
+		{
+			yfound = true;
+			yposition = index2;
+		}
+		index2++;
+	}
+	if (xposition != -1 && yposition != -1)
+	{
+		found = true;
+	}
+	
+	return found;
+}
+
 
 
 
