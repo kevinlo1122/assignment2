@@ -98,7 +98,60 @@ void InitializeBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int nu
 	return;
 }
 
+void DisplayBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard)
+{
+	int i = 0;
+	int j = 0;
+	int boardPosition = 0;
+	for (i = 0; i < numRowsInBoard; i++)
+	{
+		cout << endl << endl;
+		for (j = 0; j < numRowsInBoard; i++)
+		{
+			if (CMCheckersBoard[i][j] != 0)
+			{
+				if (CMCheckersBoard[i][j] == 1)
+				{
+					cout << "WS  ";
+					boardPosition++;
+				}
+				else if (CMCheckersBoard[i][j] == 2)
+				{
+					cout << "WM  ";
+					boardPosition++;
+				}
+				else if (CMCheckersBoard[i][j] == 3)
+				{
+					cout << "WK  ";
+					boardPosition++;
+				}
+				else if (CMCheckersBoard[i][j] == 4)
+				{
+					cout << "RS  ";
+					boardPosition++;
+				}
+				else if (CMCheckersBoard[i][j] == 5)
+				{
+					cout << "RM  ";
+					boardPosition++;
+				}
+				else
+				{
+					cout << "RK  ";
+					boardPosition++;
+				}
+			}
+			else
+			{
+				CMCheckersBoard[i][j] = boardPosition;
+				cout << CMCheckersBoard[i][j] << "  ";
+				boardPosition++;
+			}
+		}
+	}
 
+	return;
+}
 
 
 
