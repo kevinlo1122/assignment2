@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
 using namespace std;
 
 //global constants
@@ -197,8 +198,12 @@ int main()
 {
 	//declaring variables
 	int numOfTries = 0; //counter for error in selecting size of board
-	string endgame; //holding character to end the game
+	string EndGame; //holding character to end the game
+	int MovePositionInitial = 0;
+	int MovePositionFinal = 0;
 	int numRowsInBoard = 0;
+	int sizeBoard = 0;
+	sizeBoard = (numRowsInBoard * numRowsInBoard);
 	int myCMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE];
 
 	int xIndicesMove[MAX_PIECES];
@@ -252,24 +257,69 @@ int main()
 		}	
 	}
 
-	//InitializeBoard();
-	//DisplayBoard();
-	/*
+	InitializeBoard();
+	CheckList();
+	DisplayBoard();
+
 	//for each turn: check if the player has legal move
-	CountJumps(); //this will tell how many checkers are avalible to move
-	CountMove1Squares(); (this tells how many Mules and Soldiers can be moved and how many kings can be moved)
-	//if there is no possible moves (return values are 0)
-	//if red wins =
-	cout << "White is unable to move." << endl << "GAME OVER, Red has won." << endl << "Enter any character to close the game."
-	//if white wins = 
-	cout << "Red is unable to move." << endl << "GAME OVER, White has won." << endl << "Enter any character to close the game."
-	//user presses any character to end the game
-	getline(cin, endgame);
-	if (!endgame.empty())
+	while (true)
 	{
-		return 0;
-	}
-	*/
+		CountJumps(); //this will tell how many checkers are avalible to move
+
+		CountMove1Squares(); //this tells how many Mules and Soldiers can be moved and how many kings can be moved
+
+		//if there is no possible moves (return values are 0)
+
+		if (CountJumps() = 0 && CountMove1Squares() = 0) //white wins (player 2 as 0 moves)
+		{
+			cout << "Red is unable to move." << endl << "GAME OVER, White has won." << endl << "Enter any character to close the game." << endl;
+			getline(cin, EndGame);
+			if (!EndGame.empty())
+			{
+				return 0;
+			}
+
+		}
+
+		if (CountJumps() = 0 && CountMove1Squares() = 0) //red wins (player 1 has 0 moves)
+		{
+			cout << "Red is unable to move." << endl << "GAME OVER, White has won." << endl << "Enter any character to close the game." << endl;
+			getline(cin, EndGame);
+			if (!EndGame.empty())
+			{
+				return 0;
+			}
+		}
+		
+		//if there is possible moves
+		//asks what is the position of the checker the player wants to move
+		cout << "Enter the square number of the checker you want to move" << endl;
+		
+		
+		while (true) //section not complete
+		{
+			cin >> MovePositionInitial;
+			while (cin.fail()) //not an integer
+			{
+				cout << "ERROR: You did not enter an integer" << endl << "Try again" << endl;
+				cin.clear();
+				cin.ignore();
+				cin >> MovePositionInitial;
+			}
+		
+			if (MovePositionInitial > sizeBoard || MovePositionInitial < 0)
+			{
+				cout << "ERROR: That square is not on the board." << endl << "Try again" << endl;
+				continue;
+			}
+			else
+			{
+				break;
+			}
+			
+		}
+		
+
 
 
 	return 0;
