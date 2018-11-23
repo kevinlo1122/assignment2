@@ -185,7 +185,7 @@ bool CheckList(int inArray1[], int inArray2[], int xIndex, int yIndex)
 	{
 		found = true;
 	}
-	
+
 	return found;
 }
 
@@ -253,14 +253,16 @@ int main()
 		}
 		else
 		{
+			sizeBoard = (numRowsInBoard * numRowsInBoard);
 			break;
-		}	
-	}
+		}
 
+	}
+	/*
 	InitializeBoard();
 	CheckList();
 	DisplayBoard();
-
+	
 	//for each turn: check if the player has legal move
 	while (true)
 	{
@@ -290,12 +292,13 @@ int main()
 				return 0;
 			}
 		}
-		
+	}
+	*/
 		//if there is possible moves
 		//asks what is the position of the checker the player wants to move
 		cout << "Enter the square number of the checker you want to move" << endl;
-		
-		
+
+
 		while (true) //section not complete
 		{
 			cin >> MovePositionInitial;
@@ -306,7 +309,6 @@ int main()
 				cin.ignore();
 				cin >> MovePositionInitial;
 			}
-		
 			if (MovePositionInitial > sizeBoard || MovePositionInitial < 0)
 			{
 				cout << "ERROR: That square is not on the board." << endl << "Try again" << endl;
@@ -316,9 +318,9 @@ int main()
 			{
 				break;
 			}
-			
+
 		}
-		
+
 
 
 
