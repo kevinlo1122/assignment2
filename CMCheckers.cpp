@@ -207,8 +207,8 @@ int main()
 		while (cin.fail())
 		{
 			cout << "ERROR: You did not enter an integer" << endl << "Try again" << endl;
-			cin.ignore();
 			cin.clear();
+			cin.ignore();
 			cin >> MovePositionInitial;
 
 		}
