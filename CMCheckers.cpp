@@ -113,39 +113,39 @@ void DisplayBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRo
 			{
 				if (CMCheckersBoard[i][j] == 1)
 				{
-					cout << "WS  ";
+					cout << setw(4) << "WS";
 					boardPosition++;
 				}
 				else if (CMCheckersBoard[i][j] == 2)
 				{
-					cout << "WM  ";
+					cout << setw(4) << "WM";
 					boardPosition++;
 				}
 				else if (CMCheckersBoard[i][j] == 3)
 				{
-					cout << "WK  ";
+					cout << setw(4) << "WK";
 					boardPosition++;
 				}
 				else if (CMCheckersBoard[i][j] == 4)
 				{
-					cout << "RS  ";
+					cout << setw(4) << "RS";
 					boardPosition++;
 				}
 				else if (CMCheckersBoard[i][j] == 5)
 				{
-					cout << "RM  ";
+					cout << setw(4) << "RM";
 					boardPosition++;
 				}
 				else
 				{
-					cout << "RK  ";
+					cout << setw(4) << "RK";
 					boardPosition++;
 				}
 			}
 			else
 			{
 				CMCheckersBoard[i][j] = boardPosition;
-				cout << CMCheckersBoard[i][j] << "  ";
+				cout << setw(4) << CMCheckersBoard[i][j];
 				boardPosition++;
 			}
 		}
