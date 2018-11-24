@@ -496,6 +496,64 @@ bool IsJump(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 	}
 }
 
+bool CheckWin(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard)
+{
+	int i;
+	int j;
+	int whiteNotMules;
+	int whiteMules;
+	int redNotMules;
+	int redMules;
+
+	for (i = 0; i < numRowsInBoard; i++)
+	{
+		for (j = 0; j < numRowsInBoard; j++)
+		{
+			if (CMCheckersBoard[i][j] == 1||CMCheckersBoard[i][j]==3)
+			{
+				whiteNotMules++;
+			}
+			else if (CMCheckersBoard[i][j] == 2)
+			{
+				whiteMules++;
+			}
+			else if (CMCheckersBoard[i][j] == 4 || CMCheckersBoard[i][j] == 6)
+			{
+				redNotMules++;
+			}
+			else if (CMCheckersBoard[i][j] == 5)
+			{
+				redMules++;
+			}
+		}
+	}
+	if (whiteMules == 0)
+	{
+		cout << "The White Player has won the game by losing all of the White Mules";
+		return true;
+	}
+	else if (whiteNotMules == 0)
+	{
+		cout << "The Red Player has won by capturing all of the white players soldiers and kings";
+		return true;
+	}
+	else if (redMules == 0)
+	{
+		cout << "The Red Player has won the game by losing all of the Red Mules";
+		return true;
+	}
+	else if (redNotMules == 0)
+	{
+		cout << "The White Player has won by capturing all of the red players soldiers and kings";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+	
+	
 //main function
 int main()
 {
