@@ -243,19 +243,6 @@ bool MakeMove(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsIn
 		xDistanceFrom = columnFrom;
 		yDistanceFrom = rowFrom;
 
-
-		/*for (columnFrom = 0; columnFrom < numRowsInBoard; columnFrom++)
-		{
-			if (fromSquareNum >= numColumnsFrom && fromSquareNum < minusNumColumnsFrom)
-			{
-				break;
-			}
-			numColumnsFrom += 10;
-			minusNumColumnsFrom += 10;
-		}
-		xDistanceFrom = rowFrom + 1;
-		yDistanceFrom = columnFrom + 1;*/
-
 		for (rowTo = 0; rowTo < numRowsInBoard; rowTo++)
 		{
 			if (toSquareNum >= numRowsTo && toSquareNum < minusNumRowsTo)
