@@ -198,13 +198,17 @@ int main()
 {
 	//declaring variables
 	int numOfTries = 0; //counter for error in selecting size of board
+	int turn = 0;
 	string EndGame; //holding character to end the game
 	int MovePositionInitial = 0;
 	int MovePositionFinal = 0;
+	int ArrayRow = 0;
+	int ArrayColumn = 0;
 	int numRowsInBoard = 0;
 	int sizeBoard = 0;
 	sizeBoard = (numRowsInBoard * numRowsInBoard);
-	int myCMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE];
+	int myCMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE] = { 0 };
+	int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE] = { 0 };
 
 	int xIndicesMove[MAX_PIECES];
 	int yIndicesMove[MAX_PIECES];
@@ -223,7 +227,7 @@ int main()
 			return 1;
 		}
 		numOfTries++;
-		cout << "Enter the number of squares along each edge of the board: ";
+		cout << "Enter the number of squares along each edge of the board" << endl;
 		cin >> numRowsInBoard;
 		if (cin.fail())
 		{
@@ -231,6 +235,12 @@ int main()
 			cout << "8 <= number of squares <= 18" << endl;
 			cin.clear();
 			cin.ignore();
+			continue;
+		}
+		if (!(numRowsInBoard % 2 == 0))
+		{
+			cerr << "ERROR: Board size is odd." << endl;
+			cout << "8 <= number of squares <= 18" << endl;
 			continue;
 		}
 		if (numRowsInBoard > 18)
@@ -245,12 +255,6 @@ int main()
 			cout << "8 <= number of squares <= 18" << endl;
 			continue;
 		}
-		if (!(numRowsInBoard % 2 == 0))
-		{
-			cerr << "ERROR: Board size is odd." << endl;
-			cout << "8 <= number of squares <= 18" << endl;
-			continue;
-		}
 		else
 		{
 			sizeBoard = (numRowsInBoard * numRowsInBoard);
@@ -258,20 +262,17 @@ int main()
 		}
 
 	}
+
+	InitializeBoard(CMCheckersBoard, numRowsInBoard);
+	DisplayBoard(CMCheckersBoard, numRowsInBoard);
+	cout << endl << endl;
 	/*
-	InitializeBoard();
-	CheckList();
-	DisplayBoard();
-	
-	//for each turn: check if the player has legal move
+	//for each turn: check if the player has legal move, NEED TO FIX TURN SYSTEM
 	while (true)
 	{
 		CountJumps(); //this will tell how many checkers are avalible to move
-
 		CountMove1Squares(); //this tells how many Mules and Soldiers can be moved and how many kings can be moved
-
 		//if there is no possible moves (return values are 0)
-
 		if (CountJumps() = 0 && CountMove1Squares() = 0) //white wins (player 2 as 0 moves)
 		{
 			cout << "Red is unable to move." << endl << "GAME OVER, White has won." << endl << "Enter any character to close the game." << endl;
@@ -280,9 +281,7 @@ int main()
 			{
 				return 0;
 			}
-
 		}
-
 		if (CountJumps() = 0 && CountMove1Squares() = 0) //red wins (player 1 has 0 moves)
 		{
 			cout << "Red is unable to move." << endl << "GAME OVER, White has won." << endl << "Enter any character to close the game." << endl;
@@ -294,35 +293,77 @@ int main()
 		}
 	}
 	*/
-		//if there is possible moves
-		//asks what is the position of the checker the player wants to move
-		cout << "Enter the square number of the checker you want to move" << endl;
-
-
-		while (true) //section not complete
+	
+	while (true) //FOR WHITE PLAYER
+	{
+		if (turn == 0)
 		{
-			cin >> MovePositionInitial;
-			while (cin.fail()) //not an integer
-			{
-				cout << "ERROR: You did not enter an integer" << endl << "Try again" << endl;
-				cin.clear();
-				cin.ignore();
-				cin >> MovePositionInitial;
-			}
-			if (MovePositionInitial > sizeBoard || MovePositionInitial < 0)
-			{
-				cout << "ERROR: That square is not on the board." << endl << "Try again" << endl;
-				continue;
-			}
-			else
-			{
-				break;
-			}
+			cout << "White takes a turn" << endl;
+			turn = 1;
+		}
+		cout << "Enter the square number of the checker you want to move" << endl;
+		cin >> MovePositionInitial;
+		ArrayRow = MovePositionInitial / numRowsInBoard;
+		ArrayColumn = MovePositionInitial % numRowsInBoard;
 
+		while (cin.fail()) //not an integer
+		{
+			cout << "ERROR: You did not enter an integer" << endl << "Try again" << endl;
+			cin.clear();
+			cin.ignore();
+			cin >> MovePositionInitial;
+		}
+		if (MovePositionInitial > sizeBoard || MovePositionInitial < 0)
+		{
+			cout << "ERROR: That square is not on the board." << endl << "Try again" << endl;
+			continue;
+		}
+		if (CMCheckersBoard[ArrayRow][ArrayColumn] == 0)
+		{
+			cout << "ERROR: That square is empty." << endl << "Try again" << endl;
+			continue;
+		}
+		if (CMCheckersBoard[ArrayRow][ArrayColumn] == 4 || CMCheckersBoard[ArrayRow][ArrayColumn] == 5 || CMCheckersBoard[ArrayRow][ArrayColumn] == 6)
+		{
+			cout << "ERROR: That square contrains an oppenent's checker." << endl << "Try again" << endl;
+			continue;
 		}
 
+	}
+	
+	while (true) //FOR RED PLAYER
+	{
+		for (int red = 0; red < 1, red++;)
+		{
+			cout << "Red takes a turn" << endl;
+		}
+		cin >> MovePositionInitial;
+		ArrayRow = MovePositionInitial / numRowsInBoard;
+		ArrayColumn = MovePositionInitial % numRowsInBoard;
+		while (cin.fail()) //not an integer
+		{
+			cout << "ERROR: You did not enter an integer" << endl << "Try again" << endl;
+			cin.clear();
+			cin.ignore();
+			cin >> MovePositionInitial;
+		}
+		if (MovePositionInitial > sizeBoard || MovePositionInitial < 0)
+		{
+			cout << "ERROR: That square is not on the board." << endl << "Try again" << endl;
+			continue;
+		}
+		if (CMCheckersBoard[ArrayRow][ArrayColumn] == 0)
+		{
+			cout << "ERROR: That square is empty." << endl << "Try again" << endl;
+			continue;
+		}
+		if (CMCheckersBoard[ArrayRow][ArrayColumn] == 1 || CMCheckersBoard[ArrayRow][ArrayColumn] == 2 || CMCheckersBoard[ArrayRow][ArrayColumn] == 3)
+		{
+			cout << "ERROR: That square contrains an oppenent's checker." << endl << "Try again" << endl;
+			continue;
+		}
 
-
+	}
 
 	return 0;
 }
