@@ -101,6 +101,77 @@ void InitializeBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int nu
 	return;
 }
 
+int CountJumps(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
+	int numRowsInBoard, int player, int xLocArray[], int yLocArray[])
+{	
+	int numJumps = 0;
+	int index;
+	int xIndex;
+	int yIndex;
+
+	for (index = 0; index < numRowsInBoard ; index++)
+	{
+		yLocArray[index] = -1;
+		xLocArray[index] = -1;
+	}
+
+	for (xIndex = 0; xIndex < numRowsInBoard; xIndex++)
+	{
+		for (yIndex = 0; yIndex < NumRowsInBoard; yIndex++)
+		{
+			if (CMCheckersBoard[xIndex][yIndex] == 0)
+			{
+				continue;
+			}
+			
+			if ( IsJump( CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
+				 numRowsInBoard, player, xIndex, yIndex) == true)
+			{
+				numJumps++;
+				xLocArray[index] = xIndex;
+				yLocArray[index] = yIndex;
+				index++;
+			}
+		}
+	}
+	return numJumps;
+}
+
+int CountMove1Squares(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
+	int numRowsInBoard, int player, int xLocArray[], int yLocArray[])
+{	
+	int numMove1Square = 0;
+	int index;
+	int xIndex;
+	int yIndex;
+
+	for (index = 0; index < numRowsInBoard ; index++)
+	{
+		yLocArray[index] = -1;
+		xLocArray[index] = -1;
+	}
+
+	for (xIndex = 0; xIndex < numRowsInBoard; xIndex++)
+	{
+		for (yIndex = 0; yIndex < NumRowsInBoard; yIndex++)
+		{
+			if (CMCheckersBoard[xIndex][yIndex] == 0)
+			{
+				continue;
+			}
+			
+			if ( IsJump( IsMove1Square[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
+				 numRowsInBoard, player, xIndex, yIndex) == true)
+			{
+				numMove1Square++;
+				xLocArray[index] = xIndex;
+				yLocArray[index] = yIndex;
+				index++;
+			}
+		}
+	}
+	return numMove1Square;
+=======
 void DisplayBoard(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard)
 {
 	int i = 0;
@@ -1045,11 +1116,393 @@ bool MakeMove(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsIn
 			return move;
 		}
 	}
-	return move;
+  
 }
 
+bool IsMove1Square(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
+	int numRowsInBoard, int player, int xLoc, int yLoc)
+{
+	if (player == 1)
+	{
+		if (xLoc == 0)
+		{
+			if (CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 0)
+			{
+				return true;
+			}
+			else if (CMCheckersBoard[xLoc][yLoc] == 3)
+			{
+				if (CMCheckersBoard[numRowsInBoard -1][yLoc - 1] == 0)
+				{
+					return true;
+				}
+		}
+		else if (xLoc == numRowsInBoard)
+		{
+			if (CMCheckersBoard[0][yLoc + 1] == 0)
+			{
+				return true;
+			}
+			else if (CMCheckersBoard[xLoc][yLoc] == 3)
+			{
+				if (CMCheckersBoard[0][yLoc - 1] == 0)
+				{
+					return true;
+				}
+			}
+		}
+		else if (CMCheckersBoard[xLoc + 1][yLoc + 1] == 0 || CMCheckersBoard[xLoc - 1][yLoc + 1] == 0)
+		{
+			return true;
+		}
+		else if (CMCheckersBoard[xLoc][yLoc] == 3)
+		{
+			if (CMCheckersBoard[xLoc + 1][yLoc - 1] == 0 || CMCheckersBoard[xLoc - 1][yLoc - 1] == 0)
+			{
+				return true;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else if (player == 2)
+	{
 
+		if (xLoc == 0)
+		{
+			if (CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 0)
+			{
+				return true;
+			}
+			else if (CMCheckersBoard[xLoc][yLoc] == 3)
+			{
+				if (CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 0)
+				{
+					return true;
+				}
+			}
+		}
+		else if (xLoc == numRowsInBoard)
+		{
+			if (CMCheckersBoard[0][yLoc - 1] == 0)
+			{
+				return true;
+			}
+			else if (CMCheckersBoard[xLoc][yLoc] == 6)
+			{
+				if (CMCheckersBoard[0][yLoc + 1] == 0)
+				{
+					return 0;
+				}
+			}
+		}
+		else if (CMCheckersBoard[xLoc + 1][yLoc - 1] == 0 || CMCheckersBoard[xLoc - 1][yLoc - 1] == 0)
+		{
+			return true;
+		}
+		else if (CMCheckersBoard[xLoc][yLoc] == 6)
+		{
+			if (CMCheckersBoard[xLoc + 1][yLoc + 1] == 0 || CMCheckersBoard[xLoc - 1][yLoc + 1] == 0)
+			{
+				return true;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
 
+bool IsJump(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
+	int numRowsInBoard, int player, int xLoc, int yLoc)
+{
+	if (player == 1)
+	{
+		if (xLoc == 0)
+		{
+			if ((CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 4 ||
+				CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 5 ||
+				CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 6) &&
+				CMCheckersBoard[numRowsInBoard - 2][yLoc + 2] == 0)
+			{
+				return true;
+			}
+			else if (CMCheckersBoard[xLoc][yLoc] == 3)
+			{
+				if ((CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 4 ||
+					CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 5 ||
+					CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 6) &&
+					CMCheckersBoard[numRowsInBoard - 2][yLoc - 2] == 0)
+				{
+					return true;
+				}
+			}
+		}
+		else if (xLoc == 1)
+		{
+			if ((CMCheckersBoard[0][yLoc + 1] == 4 ||
+				CMCheckersBoard[0][yLoc + 1] == 5 ||
+				CMCheckersBoard[0][yLoc + 1] == 6) &&
+				CMCheckersBoard[numRowsInBoard - 1][yLoc + 2] == 0)
+			{
+				return true;
+			}
+			else if (CMCheckersBoard[xLoc][yLoc] == 3)
+			{
+				if ((CMCheckersBoard[0][yLoc - 1] == 4 ||
+					CMCheckersBoard[0][yLoc - 1] == 5 ||
+					CMCheckersBoard[0][yLoc - 1] == 6) &&
+					CMCheckersBoard[numRowsInBoard - 1][yLoc - 2] == 0)
+				{
+					return 0;
+				}
+			}
+		}
+		else if (xLoc == numRowsInBoard)
+		{
+			if ((CMCheckersBoard[0][yLoc + 1] == 4 ||
+				CMCheckersBoard[0][yLoc + 1] == 5 ||
+				CMCheckersBoard[0][yLoc + 1] == 6) &&
+				CMCheckersBoard[1][yLoc + 2] == 0)
+			{
+				return true;
+			}
+			else if (CMCheckersBoard[xLoc][yLoc] == 3)
+			{
+				if ((CMCheckersBoard[0][yLoc - 1] == 4 ||
+					CMCheckersBoard[0][yLoc - 1] == 5 ||
+					CMCheckersBoard[0][yLoc - 1] == 6) &&
+					CMCheckersBoard[1][yLoc - 2] == 0)
+				{
+					return true;
+				}
+			}
+		}
+		else if (xLoc == numRowsInBoard - 1)
+		{
+			if ((CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 4 ||
+				CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 5 ||
+				CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 6) &&
+				CMCheckersBoard[0][yLoc + 2] == 0)
+			{
+				return true;
+			}
+			else if (CMCheckersBoard[xLoc][yLoc] == 3)
+			{
+				if ((CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 4 ||
+					CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 5 ||
+					CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 6) &&
+					CMCheckersBoard[0][yLoc - 2] == 0)
+				{
+					return true;
+				}
+			}
+		}
+		else if (((CMCheckersBoard[xLoc + 1][yLoc + 1] == 4 ||
+			CMCheckersBoard[xLoc + 1][yLoc + 1] == 5 ||
+			CMCheckersBoard[xLoc + 1][yLoc + 1] == 6) &&
+			CMCheckersBoard[xLoc + 2][yLoc + 2] == 0) ||
+			((CMCheckersBoard[xLoc - 1][yLoc + 1] == 4 ||
+				CMCheckersBoard[xLoc - 1][yLoc + 1] == 5 ||
+				CMCheckersBoard[xLoc - 1][yLoc + 1] == 6) &&
+				CMCheckersBoard[xLoc - 2][yLoc + 2] == 0))
+		{
+			return true;
+		}
+		else if (CMCheckersBoard[xLoc][yLoc] == 3)
+		{
+			if (((CMCheckersBoard[xLoc + 1][yLoc - 1] == 4 ||
+				CMCheckersBoard[xLoc + 1][yLoc - 1] == 5 ||
+				CMCheckersBoard[xLoc + 1][yLoc - 1] == 6) &&
+				CMCheckersBoard[xLoc + 2][yLoc - 2] == 0) ||
+				((CMCheckersBoard[xLoc - 1][yLoc - 1] == 4 ||
+					CMCheckersBoard[xLoc - 1][yLoc - 1] == 5 ||
+					CMCheckersBoard[xLoc - 1][yLoc - 1] == 6) &&
+					CMCheckersBoard[xLoc - 2][yLoc - 2] == 0))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			if (player == 2)
+			{
+				if (xLoc == 0)
+				{
+					if ((CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 1 ||
+						CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 2 ||
+						CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 3) &&
+						CMCheckersBoard[numRowsInBoard - 2][yLoc - 2] == 0)
+					{
+						return true;
+					}
+					else if (CMCheckersBoard[xLoc][yLoc] == 6)
+					{
+						if ((CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 1 ||
+							CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 2 ||
+							CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 3) &&
+							CMCheckersBoard[numRowsInBoard - 2][yLoc + 2] == 0)
+						{
+							return true;
+						}
+					}
+				}
+				else if (xLoc == 1)
+				{
+					if ((CMCheckersBoard[0][yLoc - 1] == 1 ||
+						CMCheckersBoard[0][yLoc - 1] == 2 ||
+						CMCheckersBoard[0][yLoc - 1] == 3) &&
+						CMCheckersBoard[numRowsInBoard - 1][yLoc - 2] == 0)
+					{
+						return true;
+					}
+					else if (CMCheckersBoard[xLoc][yLoc] == 6)
+					{
+						if ((CMCheckersBoard[0][yLoc + 1] == 1 ||
+							CMCheckersBoard[0][yLoc + 1] == 2 ||
+							CMCheckersBoard[0][yLoc + 1] == 3) &&
+							CMCheckersBoard[numRowsInBoard - 1][yLoc + 2] == 0)
+						{
+							return 0;
+						}
+					}
+				}
+				else if (xLoc == numRowsInBoard)
+				{
+					if ((CMCheckersBoard[0][yLoc - 1] == 1 ||
+						CMCheckersBoard[0][yLoc - 1] == 2 ||
+						CMCheckersBoard[0][yLoc - 1] == 3) &&
+						CMCheckersBoard[1][yLoc - 2] == 0)
+					{
+						return true;
+					}
+					else if (CMCheckersBoard[xLoc][yLoc] == 6)
+					{
+						if ((CMCheckersBoard[0][yLoc + 1] == 1 ||
+							CMCheckersBoard[0][yLoc + 1] == 2 ||
+							CMCheckersBoard[0][yLoc + 1] == 3) &&
+							CMCheckersBoard[1][yLoc + 2] == 0)
+						{
+							return true;
+						}
+					}
+				}
+				else if (xLoc == numRowsInBoard - 1)
+				{
+					if ((CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 1 ||
+						CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 2 ||
+						CMCheckersBoard[numRowsInBoard - 1][yLoc - 1] == 3) &&
+						CMCheckersBoard[0][yLoc - 2] == 0)
+					{
+						return true;
+					}
+					else if (CMCheckersBoard[xLoc][yLoc] == 6)
+					{
+						if ((CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 1 ||
+							CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 2 ||
+							CMCheckersBoard[numRowsInBoard - 1][yLoc + 1] == 3) &&
+							CMCheckersBoard[0][yLoc + 2] == 0)
+						{
+							return true;
+						}
+					}
+				}
+				else if (((CMCheckersBoard[xLoc + 1][yLoc - 1] == 1 ||
+					CMCheckersBoard[xLoc + 1][yLoc - 1] == 2 ||
+					CMCheckersBoard[xLoc + 1][yLoc - 1] == 3) &&
+					CMCheckersBoard[xLoc + 2][yLoc - 2] == 0) ||
+					((CMCheckersBoard[xLoc - 1][yLoc - 1] == 1 ||
+						CMCheckersBoard[xLoc - 1][yLoc - 1] == 2 ||
+						CMCheckersBoard[xLoc - 1][yLoc - 1] == 3) &&
+						CMCheckersBoard[xLoc - 2][yLoc - 2] == 0))
+				{
+					return true;
+				}
+				else if (CMCheckersBoard[xLoc][yLoc] == 6)
+				{
+					if (((CMCheckersBoard[xLoc + 1][yLoc + 1] == 1 ||
+						CMCheckersBoard[xLoc + 1][yLoc + 1] == 2 ||
+						CMCheckersBoard[xLoc + 1][yLoc + 1] == 3) &&
+						CMCheckersBoard[xLoc + 2][yLoc + 2] == 0) ||
+						((CMCheckersBoard[xLoc - 1][yLoc + 1] == 1 ||
+							CMCheckersBoard[xLoc - 1][yLoc + 1] == 2 ||
+							CMCheckersBoard[xLoc - 1][yLoc + 1] == 3) &&
+							CMCheckersBoard[xLoc - 2][yLoc + 2] == 0))
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+		}
+	}
+}
+
+bool CheckWin(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard)
+{
+	int i;
+	int j;
+	int whiteNotMules;
+	int whiteMules;
+	int redNotMules;
+	int redMules;
+
+	for (i = 0; i < numRowsInBoard; i++)
+	{
+		for (j = 0; j < numRowsInBoard; j++)
+		{
+			if (CMCheckersBoard[i][j] == 1||CMCheckersBoard[i][j]==3)
+			{
+				whiteNotMules++;
+			}
+			else if (CMCheckersBoard[i][j] == 2)
+			{
+				whiteMules++;
+			}
+			else if (CMCheckersBoard[i][j] == 4 || CMCheckersBoard[i][j] == 6)
+			{
+				redNotMules++;
+			}
+			else if (CMCheckersBoard[i][j] == 5)
+			{
+				redMules++;
+			}
+		}
+	}
+	if (whiteMules == 0)
+	{
+		cout << "The White Player has won the game by losing all of the White Mules";
+		return true;
+	}
+	else if (whiteNotMules == 0)
+	{
+		cout << "The Red Player has won by capturing all of the white players soldiers and kings";
+		return true;
+	}
+	else if (redMules == 0)
+	{
+		cout << "The Red Player has won the game by losing all of the Red Mules";
+		return true;
+	}
+	else if (redNotMules == 0)
+	{
+		cout << "The White Player has won by capturing all of the red players soldiers and kings";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+	
+	
 //main function
 int main()
 {
