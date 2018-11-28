@@ -1292,9 +1292,7 @@ int main()
 	}
 	InitializeBoard(CMCheckersBoard, numRowsInBoard);
 	DisplayBoard(CMCheckersBoard, numRowsInBoard);
-
-	for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[0][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[1][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[2][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[3][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[4][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[5][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[6][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[7][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[8][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[9][j] << ' '; } cout << endl; for (int i = 0, j = 0; i < 10; i++, j++) { cout << CMCheckersBoard[10][j] << ' '; } cout << endl;
-
+	
 	/*
 	//for each turn: check if the player has legal move, NEED TO FIX TURN SYSTEM
 	while (true)
