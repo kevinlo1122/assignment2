@@ -1025,10 +1025,12 @@ bool IsJump(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 			{
 				return true;
 			}
+		}
 			else
 			{
 				return false;
 			}
+	}
 			if (player == 2)
 			{
 				if (CMCheckersBoard[yLoc][xLoc] != 1 || CMCheckersBoard[yLoc][xLoc] != 2 || CMCheckersBoard[yLoc][xLoc] != 3)
@@ -1037,19 +1039,19 @@ bool IsJump(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 				}
 				if (xLoc == 0)
 				{
-					if ((CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 1 ||
-						CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 2 ||
-						CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 3) &&
-						CMCheckersBoard[yLoc + 2][numRowsInBoard - 2] == 0)
+					if ((CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 1 ||
+						CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 2 ||
+						CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 3) &&
+						CMCheckersBoard[yLoc - 2][numRowsInBoard - 2] == 0)
 					{
 						return true;
 					}
 					else if (CMCheckersBoard[yLoc][xLoc] == 6)
 					{
-						if ((CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 1 ||
-							CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 2 ||
-							CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 3) &&
-							CMCheckersBoard[yLoc - 2][numRowsInBoard - 2] == 0)
+						if ((CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 1 ||
+							CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 2 ||
+							CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 3) &&
+							CMCheckersBoard[yLoc + 2][numRowsInBoard - 2] == 0)
 						{
 							return true;
 						}
@@ -1057,19 +1059,19 @@ bool IsJump(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 				}
 				else if (xLoc == 1)
 				{
-					if ((CMCheckersBoard[yLoc + 1][0] == 1 ||
-						CMCheckersBoard[yLoc + 1][0] == 2 ||
-						CMCheckersBoard[yLoc + 1][0] == 3) &&
-						CMCheckersBoard[yLoc + 2][numRowsInBoard - 1] == 0)
+					if ((CMCheckersBoard[yLoc - 1][0] == 1 ||
+						CMCheckersBoard[yLoc - 1][0] == 2 ||
+						CMCheckersBoard[yLoc - 1][0] == 3) &&
+						CMCheckersBoard[yLoc - 2][numRowsInBoard - 1] == 0)
 					{
 						return true;
 					}
 					else if (CMCheckersBoard[yLoc][xLoc] == 6)
 					{
-						if ((CMCheckersBoard[yLoc - 1][0] == 1 ||
-							CMCheckersBoard[yLoc - 1][0] == 2 ||
-							CMCheckersBoard[yLoc - 1][0] == 3) &&
-							CMCheckersBoard[yLoc - 2][numRowsInBoard - 1] == 0)
+						if ((CMCheckersBoard[yLoc + 1][0] == 1 ||
+							CMCheckersBoard[yLoc + 1][0] == 2 ||
+							CMCheckersBoard[yLoc + 1][0] == 3) &&
+							CMCheckersBoard[yLoc + 2][numRowsInBoard - 1] == 0)
 						{
 							return true;
 						}
@@ -1077,19 +1079,19 @@ bool IsJump(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 				}
 				else if (xLoc == numRowsInBoard)
 				{
-					if ((CMCheckersBoard[yLoc + 1][0] == 1 ||
-						CMCheckersBoard[yLoc + 1][0] == 2 ||
-						CMCheckersBoard[yLoc + 1][0] == 3) &&
-						CMCheckersBoard[yLoc + 2][1] == 0)
+					if ((CMCheckersBoard[yLoc - 1][0] == 1 ||
+						CMCheckersBoard[yLoc - 1][0] == 2 ||
+						CMCheckersBoard[yLoc - 1][0] == 3) &&
+						CMCheckersBoard[yLoc - 2][1] == 0)
 					{
 						return true;
 					}
 					else if (CMCheckersBoard[yLoc][xLoc] == 6)
 					{
-						if ((CMCheckersBoard[yLoc - 1][0] == 1 ||
-							CMCheckersBoard[yLoc - 1][0] == 2 ||
-							CMCheckersBoard[yLoc - 1][0] == 3) &&
-							CMCheckersBoard[yLoc - 2][1] == 0)
+						if ((CMCheckersBoard[yLoc + 1][0] == 1 ||
+							CMCheckersBoard[yLoc + 1][0] == 2 ||
+							CMCheckersBoard[yLoc + 1][0] == 3) &&
+							CMCheckersBoard[yLoc + 2][1] == 0)
 						{
 							return true;
 						}
@@ -1097,46 +1099,46 @@ bool IsJump(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 				}
 				else if (xLoc == numRowsInBoard - 1)
 				{
-					if ((CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 1 ||
-						CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 2 ||
-						CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 3) &&
-						CMCheckersBoard[yLoc + 2][0] == 0)
+					if ((CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 1 ||
+						CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 2 ||
+						CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 3) &&
+						CMCheckersBoard[yLoc - 2][0] == 0)
 					{
 						return true;
 					}
 					else if (CMCheckersBoard[yLoc][xLoc] == 6)
 					{
-						if ((CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 1 ||
-							CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 2 ||
-							CMCheckersBoard[yLoc - 1][numRowsInBoard - 1] == 3) &&
-							CMCheckersBoard[yLoc - 2][0] == 0)
+						if ((CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 1 ||
+							CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 2 ||
+							CMCheckersBoard[yLoc + 1][numRowsInBoard - 1] == 3) &&
+							CMCheckersBoard[yLoc + 2][0] == 0)
 						{
 							return true;
 						}
 					}
 				}
-				else if (((CMCheckersBoard[yLoc + 1][xLoc + 1] == 1 ||
-					CMCheckersBoard[yLoc + 1][xLoc + 1] == 2 ||
-					CMCheckersBoard[yLoc + 1][xLoc + 1] == 3) &&
-					CMCheckersBoard[yLoc + 2][xLoc + 2] == 0) ||
-					((CMCheckersBoard[yLoc + 1][xLoc - 1] == 1 ||
-						CMCheckersBoard[yLoc + 1][xLoc - 1] == 2 ||
-						CMCheckersBoard[yLoc + 1][xLoc - 1] == 3) &&
-						CMCheckersBoard[yLoc + 2][xLoc - 2] == 0))
+				else if (((CMCheckersBoard[yLoc - 1][xLoc + 1] == 1 ||
+					CMCheckersBoard[yLoc - 1][xLoc + 1] == 2 ||
+					CMCheckersBoard[yLoc - 1][xLoc + 1] == 3) &&
+					CMCheckersBoard[yLoc - 2][xLoc + 2] == 0) ||
+					((CMCheckersBoard[yLoc - 1][xLoc - 1] == 1 ||
+						CMCheckersBoard[yLoc - 1][xLoc - 1] == 2 ||
+						CMCheckersBoard[yLoc - 1][xLoc - 1] == 3) &&
+						CMCheckersBoard[yLoc - 2][xLoc - 2] == 0))
 				{
 
 					return true;
 				}
 				else if (CMCheckersBoard[yLoc][xLoc] == 6)
 				{
-					if (((CMCheckersBoard[yLoc - 1][xLoc + 1] == 1 ||
-						CMCheckersBoard[yLoc - 1][xLoc + 1] == 2 ||
-						CMCheckersBoard[yLoc - 1][xLoc + 1] == 3) &&
-						CMCheckersBoard[yLoc - 2][xLoc + 2] == 0) ||
-						((CMCheckersBoard[yLoc - 1][xLoc - 1] == 1 ||
-							CMCheckersBoard[yLoc - 1][xLoc - 1] == 2 ||
-							CMCheckersBoard[yLoc - 1][xLoc - 1] == 3) &&
-							CMCheckersBoard[yLoc - 2][xLoc - 2] == 0))
+					if (((CMCheckersBoard[yLoc + 1][xLoc + 1] == 1 ||
+						CMCheckersBoard[yLoc + 1][xLoc + 1] == 2 ||
+						CMCheckersBoard[yLoc + 1][xLoc + 1] == 3) &&
+						CMCheckersBoard[yLoc + 2][xLoc + 2] == 0) ||
+						((CMCheckersBoard[yLoc + 1][xLoc - 1] == 1 ||
+							CMCheckersBoard[yLoc + 1][xLoc - 1] == 2 ||
+							CMCheckersBoard[yLoc + 1][xLoc - 1] == 3) &&
+							CMCheckersBoard[yLoc + 2][xLoc - 2] == 0))
 					{
 						return true;
 					}
