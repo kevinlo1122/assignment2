@@ -1148,8 +1148,8 @@ bool IsJump(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE],
 					}
 				}
 			}
-		}
-	}return false;
+		
+	return false;
 }
 
 bool CheckWin(int CMCheckersBoard[MAX_ARRAY_SIZE][MAX_ARRAY_SIZE], int numRowsInBoard)
